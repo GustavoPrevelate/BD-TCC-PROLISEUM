@@ -2,12 +2,14 @@ create database db_tcc_proliseum_v3;
 
 use db_tcc_proliseum_v3;
 
+show tables;
+
 drop database db_tcc_proliseum_v3;
 
 create table tbl_genero(
 	id int not null primary key auto_increment,
     nome_genero varchar(100),
-    icone_genero varchar(255),
+    icone_genero text,
     unique index(id)
 );
 
@@ -18,8 +20,8 @@ create table tbl_perfil(
     email varchar(255),
     senha varchar(64) not null,
     data_nascimento date not null,
-    foto_perfil varchar(255),
-    foto_capa varchar(255),
+    foto_perfil text,
+    foto_capa text,
     id_genero int not null,
     
     constraint FK_Genero_Perfil
@@ -33,14 +35,14 @@ create table tbl_perfil(
 create table tbl_rede_social(
 	id int not null primary key auto_increment,
     nome_rede_social varchar(100),
-    icone_rede_social varchar(255),
+    icone_rede_social text,
     unique index(id)
     
 );
 
 create table tbl_tag_rede_social(
 	id int not null auto_increment,
-    tag varchar(255),
+    tag text,
     id_rede_social int not null,
     
     constraint FK_RedeSocial_TagRedeSocial
@@ -54,7 +56,7 @@ create table tbl_tag_rede_social(
 create table tbl_organizador(
 	id int not null auto_increment,
     nome_organizacao varchar(100) not null,
-    foto_organizacao varchar(255),
+    foto_organizacao text,
     biografia text(2000),
     id_perfil int not null,
     id_tag_rede_social int not null,
@@ -75,15 +77,15 @@ create table tbl_organizador(
 create table tbl_jogo(
 	id int not null primary key auto_increment,
     nome_jogo varchar(100),
-    foto_jogo varchar(255) not null,
+    foto_jogo text not null,
     unique index(id)
 );
 
 create table tbl_time(
 	id int not null auto_increment,
     nome_time varchar(100) not null,
-    foto_time varchar(255),
-    foto_capa varchar(255),
+    foto_time text,
+    foto_capa text,
     biografia text(2000),
     id_jogo int not null,
     id_organizador int not null,
@@ -113,8 +115,8 @@ create table tbl_peneira_time(
     inicio_horario_disponivel datetime not null,
     fim_horario_disponivel datetime not null,
     descricao text(5000) not null,
-    foto varchar(255),
-    video varchar(255),
+    foto text,
+    video text,
     id_time int not null,
     
     constraint FK_Time_PeneiraTime
@@ -155,7 +157,7 @@ create table tbl_treino_time(
 
 create table tbl_rank_jogo(
 	id int not null auto_increment,
-    icone_rank varchar(255) not null,
+    icone_rank text not null,
     id_jogo int not null,
     
     constraint FK_Jogo_RankJogo
@@ -169,7 +171,7 @@ create table tbl_rank_jogo(
 
 create table tbl_funcao_jogo(
 	id int not null auto_increment,
-    foto_funcao varchar(255) not null,
+    foto_funcao text not null,
     id_jogo int not null,
     
     constraint FK_Jogo_FuncaoJogo
@@ -238,8 +240,8 @@ create table tbl_publicacao_jogador(
     inicio_horario_disponivel datetime not null,
     fim_horario_disponivel datetime not null,
     descricao text(5000) not null,
-    foto varchar(255),
-    video varchar(255),
+    foto text,
+    video text,
     id_jogador int not null,
     
     constraint FK_Jogador_PublicacaoJogador
@@ -270,8 +272,8 @@ create table tbl_propostas_jogador(
 
 create table tbl_highlights(
 	id int not null primary key auto_increment,
-    highlights varchar(255),
-    foto varchar(255),
+    highlights text,
+    foto text,
     unique index(id)
     
 );
@@ -315,7 +317,7 @@ create table tbl_highlights_jogador(
 create table tbl_titulos_campeonatos(
 	id int not null primary key auto_increment,
     nome_titulo varchar(100) not null,
-    foto_titulo varchar(255) not null,
+    foto_titulo text not null,
     posicao int,
     data_titulo datetime,
     unique index(id)
@@ -325,7 +327,7 @@ create table tbl_campeonato(
 	id int not null auto_increment,
     nome_campeonato varchar(100) not null,
     formato text(2000) not null,
-    foto_capa_campeonato varchar(255) not null,
+    foto_capa_campeonato text not null,
     data_hora datetime not null,
     inicio datetime not null,
     fim datetime not null,
