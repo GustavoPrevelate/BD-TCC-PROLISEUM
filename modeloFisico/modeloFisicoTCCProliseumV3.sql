@@ -2,8 +2,6 @@ create database db_tcc_proliseum_v3;
 
 use db_tcc_proliseum_v3;
 
-show tables;
-
 drop database db_tcc_proliseum_v3;
 
 create table tbl_genero(
@@ -395,13 +393,13 @@ create table tbl_peneira_time_jogador (
 
 ### TESTE INSERT NA TABELA DE GENERO
 insert into tbl_genero (nome_genero, icone_genero)
-	values("masculino", "icone masculino");
+	values("Masculino", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosGenero%2FiconeGeneroMasculino.png?alt=media&token=e6219e9d-55ad-4ca0-a12e-209afa0f14ad");
     
 insert into tbl_genero (nome_genero, icone_genero)
-	values("feminino", "icone feminino");
+	values("Feminino", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosGenero%2FiconeGeneroFeminino.png?alt=media&token=18aaa92e-e40e-4def-9652-36b85b12a862");
 
 insert into tbl_genero (nome_genero, icone_genero)
-	values("outro", "icone outro");
+	values("Indefinido", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosGenero%2FiconeGeneroIndefinido.png?alt=media&token=98738604-9e2b-4d06-95b0-2a7298e1e33e");
     
 select * from tbl_genero;
 
@@ -409,65 +407,62 @@ select * from tbl_genero;
 ### ORGANIZADOR
 insert into tbl_perfil (nome_usuario, nome_completo, email, senha, data_nascimento, foto_perfil, foto_capa, id_genero)
 	values(
-			"gustavogameplay", 
-			"gustavo prevelate", 
-			"gustavo@gmail.com",  
+			"Gustavo", 
+			"Gustavo Prevelate", 
+			"guprevelate@gmail.com",  
 			"12345678",  
 			"2004-12-15",  
-			"foto goku",  
-			"capa dragonball",  
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoPadraoPerfilUsuario.png?alt=media&token=df04182f-35f3-4901-8b3a-c0d1501e2f58",  
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoCapaPadrao.png?alt=media&token=93f1229b-e007-45c1-bb7a-363ce09b9027",  
 			1);
             
 ### JOGADOR
 insert into tbl_perfil (nome_usuario, nome_completo, email, senha, data_nascimento, foto_perfil, foto_capa, id_genero)
 	values(
-			"eduardogameplay", 
-			"eduardo ribeiro", 
+			"Eduardo", 
+			"Eduardo Ribeiro", 
 			"eduardo@gmail.com",  
 			"87654321",  
 			"2004-09-08",  
-			"foto rengoku",  
-			"capa demonslayer",  
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoPadraoPerfilUsuario.png?alt=media&token=df04182f-35f3-4901-8b3a-c0d1501e2f58",  
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoCapaPadrao.png?alt=media&token=93f1229b-e007-45c1-bb7a-363ce09b9027",  
 			1);
             
 select * from tbl_perfil;
 
 ### TESTE INSERT NA TABELA DE REDE SOCIAL
 insert into tbl_rede_social (nome_rede_social, icone_rede_social)
-	values("Facebook", "Icone facebook");
+	values("Facebook", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/redesSociais%2FiconeFacebook.png?alt=media&token=7467dbab-f5a4-41bc-af73-0ae0d4df0d8f");
     
 insert into tbl_rede_social (nome_rede_social, icone_rede_social)
-	values("Discord", "Icone discord");
+	values("Discord", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/redesSociais%2FiconeDiscord.png?alt=media&token=0fe1e30c-c8b6-46d7-bc3d-ec94a0d5ab38");
     
 insert into tbl_rede_social (nome_rede_social, icone_rede_social)
-	values("instagram", "Icone instagram");
+	values("Instagram", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/redesSociais%2FiconeInstagram.png?alt=media&token=64d145e0-aef5-4c7c-95ee-4aa5d59a2996");
     
 insert into tbl_rede_social (nome_rede_social, icone_rede_social)
-	values("Twitter", "Icone twitter");
+	values("Twitter", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/redesSociais%2FiconeTwitter.png?alt=media&token=b4eb738d-82d0-4cf0-838a-082e5cb763b7");
+
+insert into tbl_rede_social (nome_rede_social, icone_rede_social)
+	values("Twitch", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/redesSociais%2FiconeTwitch.png?alt=media&token=56e0cedb-d818-49bf-9fd4-ac7f835312d1");
     
 select * from tbl_rede_social;
 
 ### TESTE INSERT NA TABELA DE TAG DA REDE SOCIAL
 insert into tbl_tag_rede_social (tag, id_rede_social)
-	values("Linkfacebook#@fa1565", "1");
+	values("TesteLinkFacebook#@fa1562", "1");
     
 insert into tbl_tag_rede_social (tag, id_rede_social)
-	values("linkdiscord#5234", "2");
-
-insert into tbl_tag_rede_social (tag, id_rede_social)
-	values("linkinstagram#2354", "3");
-    
-insert into tbl_tag_rede_social (tag, id_rede_social)
-	values("linktwitter#3525", "4");
+	values("TesteLinkDiscord#5234", "2");
 
 select * from tbl_tag_rede_social;
 
 ### TESTE INSERT NA TABELA DE ORGANIZADOR
 insert into tbl_organizador (nome_organizacao, foto_organizacao, biografia, id_perfil, id_tag_rede_social)
 	values(
-			"gustavo empresario", 
-			"foto goku drip", 
-			"ser ou nao ser, so sei que nada sei",  
+			"Gustavo", 
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoPadraoPerfilUsuario.png?alt=media&token=df04182f-35f3-4901-8b3a-c0d1501e2f58", 
+			"Biografia padrao",  
 			1,  
 			2);
             
@@ -475,92 +470,94 @@ select * from tbl_organizador;
 
 ### TESTE INSERT NA TABELA DE JOGO
 insert into tbl_jogo (nome_jogo, foto_jogo)
-	values("league of legens", "foto do faz o L");
+	values("League Of Legends", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosJogo%2FfotoLOL.png?alt=media&token=4ecad36a-cfce-4f4b-a04b-fc1f602e1a1b");
     
 insert into tbl_jogo (nome_jogo, foto_jogo)
-	values("counter stricker", "foto de soldado tr");
+	values("Counter Stricker Global Ofensive", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosJogo%2FfotoCSGO.png?alt=media&token=3bfdd9f3-930b-46b5-bcad-ef4b37ef38fd");
     
 insert into tbl_jogo (nome_jogo, foto_jogo)
-	values("valorant", "foto da jet");
+	values("Valorant", "https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosJogo%2FfotoValorant.png?alt=media&token=b9a16cc1-0394-4d2b-8e75-1942edf0a5bb");
     
 select * from tbl_jogo;
 
 ### TESTE INSERT NA TABELA DE TIME
 insert into tbl_time (nome_time, foto_time, foto_capa, biografia, id_jogo, id_organizador, id_tag_rede_social)
 	values(
-			"time padrao", 
-			"foto padrao", 
-			"foto capa padrao",  
-			"biografia padrao",  
+			"Time padrão", 
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoPadraoPerfilUsuario.png?alt=media&token=df04182f-35f3-4901-8b3a-c0d1501e2f58", 
+			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoCapaPadrao.png?alt=media&token=93f1229b-e007-45c1-bb7a-363ce09b9027",  
+			"Biografia padrão",  
 		    1,  
 			1,  
-			4);
+			2);
 	
 select * from tbl_time;
 
 ### TESTE INSERT NA TABELA DE FUNÇÃO JOGO
 insert into tbl_funcao_jogo (foto_funcao, id_jogo)
-	values("foto top", "1");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosFuncoes%2FiconeADC.png?alt=media&token=23b354d5-d34c-42fa-a786-32b98577de05", "1");
 
 insert into tbl_funcao_jogo (foto_funcao, id_jogo)
-	values("foto jungler", "2");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosFuncoes%2FiconeJungle.png?alt=media&token=9535260a-33a8-4558-89b4-2ac0c675d2c2", "1");
 
 insert into tbl_funcao_jogo (foto_funcao, id_jogo)
-	values("foto mid", "3");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosFuncoes%2FiconeMidLane.png?alt=media&token=1e76f4c8-f37b-48cd-a54e-718fb17acdc8", "1");
     
 insert into tbl_funcao_jogo (foto_funcao, id_jogo)
-	values("foto adc", "2");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosFuncoes%2FiconeSupport.png?alt=media&token=49de403d-e193-4ced-9ee6-89d2545b8baf", "1");
     
 insert into tbl_funcao_jogo (foto_funcao, id_jogo)
-	values("foto suporte", "1");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosFuncoes%2FiconeTopLane.png?alt=media&token=7f506e08-e656-4265-975f-ba5a4e48ba35", "1");
     
 select * from tbl_funcao_jogo;
 
 ### TESTE INSERT NA TABELA DE RANK JOGO
 insert into tbl_rank_jogo (icone_rank, id_jogo)
-	values("icone prata 1", "2");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeIron.png?alt=media&token=a04e9c08-22a8-43f1-b071-f418ed4b546a", "1");
 
 insert into tbl_rank_jogo (icone_rank, id_jogo)
-	values("icone ouro 2", "2");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeBronze.png?alt=media&token=917fc331-3889-4a98-8e5e-919faa5358d5", "1");
     
 insert into tbl_rank_jogo (icone_rank, id_jogo)
-	values("icone platina 3", "3");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeSilver.png?alt=media&token=48d01edf-4d92-4ab8-8b2d-763a342682bf", "1");
     
 insert into tbl_rank_jogo (icone_rank, id_jogo)
-	values("icone diamante 4", "1");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeGold.png?alt=media&token=1da37cea-cf0b-4d9d-84f1-343b9284cb37", "1");
     
 insert into tbl_rank_jogo (icone_rank, id_jogo)
-	values("icone global 5", "1");
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconePlatinum.png?alt=media&token=e8400502-d64c-432a-a74a-f69e490e2ed1", "1");
+    
+insert into tbl_rank_jogo (icone_rank, id_jogo)
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeDiamond.png?alt=media&token=1ac616f2-6dd8-4db3-809d-58a638bbcac0", "1");
+    
+insert into tbl_rank_jogo (icone_rank, id_jogo)
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeMaster.png?alt=media&token=fe7fef4d-8953-49d0-a898-9e0f4abc7055", "1");
+    
+insert into tbl_rank_jogo (icone_rank, id_jogo)
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeGrandmaster.png?alt=media&token=0a143ba3-7aec-40c4-aab3-5f5c13ab966a", "1");
+    
+insert into tbl_rank_jogo (icone_rank, id_jogo)
+	values("https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosJogo%2FfotosRank%2FiconeChallenger.png?alt=media&token=9447d278-41be-4869-8eaf-9e37fe552fc3", "1");
     
 select * from tbl_rank_jogo;
 
 ### TESTE INSERT NA TABELA DE RANK JOGO
 insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
-	values("1", "1");
+	values("5", "5");
     
-insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
-	values("2", "1");
-    
-insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
-	values("2", "3");
-    
-insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
-	values("3", "2");
-    
-insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
-	values("3", "2");
+
 
 select * from tbl_dados_jogador;
 
 ### TESTE INSERT NA TABELA DE JOGADOR
 insert into tbl_jogador (nickname, biografia, id_perfil, id_tag_rede_social, id_time, id_dados_jogador)
 	values(
-			"eduardogameplay2023", 
-			"jogo varios jogos", 
+			"EduardoGamer", 
+			"Biografia padrao", 
 			2,  
 			2,  
 		    1,  
-			2);
+			1);
 		
 select * from tbl_jogador;
 
@@ -576,6 +573,3 @@ SELECT tbl_perfil.id,
 FROM tbl_perfil where id = 1;
 
 UPDATE tbl_perfil set senha = "1234" where id = 1;
-
-		
-
