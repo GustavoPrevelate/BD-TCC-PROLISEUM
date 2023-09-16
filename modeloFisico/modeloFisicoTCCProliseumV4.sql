@@ -1,8 +1,11 @@
-create database db_tcc_proliseum_v3;
+create database db_tcc_proliseum_v4;
 
-use db_tcc_proliseum_v3;
+show databases;
+show tables;
 
-drop database db_tcc_proliseum_v3;
+use db_tcc_proliseum_v4;
+
+drop database db_tcc_proliseum_v4;
 
 create table tbl_genero(
 	id int not null primary key auto_increment,
@@ -205,7 +208,6 @@ create table tbl_jogador(
     biografia text(2000),
     id_perfil int not null,
     id_tag_rede_social int not null,
-    id_time int not null,
     id_dados_jogador int not null,
     
     constraint FK_Perfil_Jogador
@@ -216,10 +218,6 @@ create table tbl_jogador(
     foreign key (id_tag_rede_social)
     references tbl_tag_rede_social(id),
     
-    constraint FK_Time_Jogador
-    foreign key (id_time)
-    references tbl_time(id),
-    
     constraint FK_DadosJogador_Jogador
     foreign key(id_dados_jogador)
     references tbl_dados_jogador(id),
@@ -229,6 +227,22 @@ create table tbl_jogador(
     
 );
 
+create table tbl_jogador_time(
+	id int not null auto_increment,
+    id_jogador int not null,
+    id_time int not null,
+
+	constraint FK_Jogador_JogadorTime
+    foreign key(id_jogador)
+    references tbl_jogador(id),
+    
+    constraint FK_Time_JogadorTime
+    foreign key(id_time)
+    references tbl_time(id),
+    
+    unique index(id),
+    primary key(id)
+);
 
 
 create table tbl_publicacao_jogador(
@@ -353,6 +367,25 @@ create table tbl_campeonato(
     unique index(id)
     
 );
+
+create table tbl_campeonatos_organizadores(
+	id int not null auto_increment,
+    id_organizador int not null,
+    id_campeonato int not null,
+    
+    constraint FK_Organizador_CampeonatosOrganizadores
+    foreign key(id_organizador)
+    references tbl_organizador(id),
+    
+    constraint FK_Campeonato_CampeonatosOrganizadores
+    foreign key(id_campeonato)
+    references tbl_campeonato(id),
+    
+    primary key(id),
+    unique index(id)
+    
+);
+
 
 create table tbl_time_campeonato(
 	id int not null auto_increment,
@@ -550,22 +583,25 @@ insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
 select * from tbl_dados_jogador;
 
 ### TESTE INSERT NA TABELA DE JOGADOR
-insert into tbl_jogador (nickname, biografia, id_perfil, id_tag_rede_social, id_time, id_dados_jogador)
+insert into tbl_jogador (nickname, biografia, id_perfil, id_tag_rede_social, id_dados_jogador)
 	values(
 			"EduardoGamer", 
 			"Biografia padrao", 
 			2,  
-			2,  
-		    1,  
+			2,
 			1);
 		
 select * from tbl_jogador;
 
-### TESTE DE INSERT PARA CADASTRAR USUARIO EFETIVAMENTE
+### TESTE DE INSERT DA TABELA INTERMEDIARIA ENTRE JOGADOR E TIME
+insert into tbl_jogador_time(id_jogador, id_time)
+	values(
+			1,
+            1);
 
+select * from tbl_jogador_time;
 
-
-##################### MANIPULAÇÃO DE SELECT
+##################### MANIPULAÇÃO DE SELECT 
 
 SELECT tbl_perfil.id,
 		tbl_perfil.nome_usuario,
@@ -573,3 +609,32 @@ SELECT tbl_perfil.id,
 FROM tbl_perfil where id = 1;
 
 UPDATE tbl_perfil set senha = "1234" where id = 1;
+
+###################################### INNER JOIN 
+
+### INNER JOIN TABELA DE ORGANIZADOR
+SELECT tbl_organizador.id,
+		tbl_organizador.nome_organizacao,
+		tbl_organizador.foto_organizacao,
+        tbl_organizador.biografia,
+        tbl_perfil.nome_usuario,
+        tbl_perfil.nome_completo,
+        tbl_perfil.email,
+        tbl_perfil.senha,
+        tbl_perfil.data_nascimento,
+        tbl_perfil.foto_perfil,
+        tbl_perfil.foto_capa,
+        tbl_genero.nome_genero,
+        tbl_genero.icone_genero,
+        tbl_tag_rede_social.tag,
+        tbl_rede_social.nome_rede_social,
+        tbl_rede_social.icone_rede_social
+FROM tbl_organizador
+INNER JOIN tbl_perfil
+		ON tbl_organizador.id = tbl_perfil.id
+INNER JOIN tbl_genero
+		ON tbl_perfil.id = tbl_genero.id
+INNER JOIN tbl_tag_rede_social
+        ON tbl_organizador.id = tbl_tag_rede_social.id
+INNER JOIN tbl_rede_social
+		ON tbl_tag_rede_social.id = tbl_rede_social.id
