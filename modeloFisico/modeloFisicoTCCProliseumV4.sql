@@ -60,19 +60,31 @@ create table tbl_organizador(
     foto_organizacao text,
     biografia text(2000),
     id_perfil int not null,
-    id_tag_rede_social int not null,
     
     constraint FK_Perfil_Organizador
     foreign key (id_perfil)
     references tbl_perfil(id),
     
-    constraint FK_TagRedeSocial_Organizador
-    foreign key (id_tag_rede_social)
-    references tbl_tag_rede_social(id),
-    
     primary key(id),
     unique index(id)
 
+);
+
+create table tbl_tag_rede_social_organizador(
+	id int not null auto_increment,
+    id_organizador int not null,
+    id_tag_rede_social int not null,
+    
+    constraint FK_Organizador_TagRedeSocialOrganizador
+    foreign key (id_organizador)
+    references tbl_organizador(id),
+    
+    constraint FK_TagRedeSocial_TagRedeSocialOrganizador
+    foreign key (id_tag_rede_social)
+    references tbl_tag_rede_social(id),
+    
+    unique index(id),
+    primary key(id)
 );
 
 create table tbl_jogo(
@@ -90,7 +102,6 @@ create table tbl_time(
     biografia text(2000),
     id_jogo int not null,
     id_organizador int not null,
-    id_tag_rede_social int not null,
     
     constraint FK_Jogo_Time
     foreign key (id_jogo)
@@ -100,13 +111,26 @@ create table tbl_time(
     foreign key (id_organizador)
     references tbl_organizador(id),
     
-    constraint FK_TagRedeSocial_Time
-    foreign key (id_tag_rede_social)
-    references tbl_tag_rede_social(id),
-    
     primary key(id),
     unique index(id)
     
+);
+
+create table tbl_tag_rede_social_time(
+	id int not null auto_increment,
+    id_time int not null,
+    id_tag_rede_social int not null,
+    
+    constraint FK_Time_TagRedeSocialTime
+    foreign key (id_time)
+    references tbl_time(id),
+    
+    constraint FK_TagRedeSocial_TagRedeSocialTime
+    foreign key (id_tag_rede_social)
+    references tbl_tag_rede_social(id),
+    
+    unique index(id),
+    primary key(id)
 );
 
 create table tbl_peneira_time(
@@ -207,16 +231,11 @@ create table tbl_jogador(
     nickname varchar(100) not null,
     biografia text(2000),
     id_perfil int not null,
-    id_tag_rede_social int not null,
     id_dados_jogador int not null,
     
     constraint FK_Perfil_Jogador
     foreign key (id_perfil)
     references tbl_perfil(id),
-    
-    constraint FK_TagRedeSocial_Jogador
-    foreign key (id_tag_rede_social)
-    references tbl_tag_rede_social(id),
     
     constraint FK_DadosJogador_Jogador
     foreign key(id_dados_jogador)
@@ -225,6 +244,23 @@ create table tbl_jogador(
     primary key(id),
     unique index(id)
     
+);
+
+create table tbl_tag_rede_social_jogador(
+	id int not null auto_increment,
+    id_jogador int not null,
+    id_tag_rede_social int not null,
+    
+    constraint FK_Jogador_TagRedeSocialJogador
+    foreign key (id_jogador)
+    references tbl_jogador(id),
+    
+    constraint FK_TagRedeSocial_TagRedeSocialJogador
+    foreign key (id_tag_rede_social)
+    references tbl_tag_rede_social(id),
+    
+    unique index(id),
+    primary key(id)
 );
 
 create table tbl_jogador_time(
@@ -349,7 +385,6 @@ create table tbl_campeonato(
     avaliacao double,
     id_organizador int not null,
     id_titulos_campeonatos int not null,
-    id_tag_rede_social int not null,
     
     constraint FK_Organizador_Campeonato
     foreign key(id_organizador)
@@ -359,13 +394,26 @@ create table tbl_campeonato(
     foreign key(id_titulos_campeonatos)
     references tbl_titulos_campeonatos(id),
     
-    constraint FK_TagRedeSocial_Campeonato
-    foreign key(id_tag_rede_social)
-    references tbl_tag_rede_social(id),
-    
     primary key(id),
     unique index(id)
     
+);
+
+create table tbl_tag_rede_social_campeonato(
+	id int not null auto_increment,
+    id_campeonato int not null,
+    id_tag_rede_social int not null,
+    
+    constraint FK_Campeonato_TagRedeSocialCampeonato
+    foreign key (id_campeonato)
+    references tbl_campeonato(id),
+    
+    constraint FK_TagRedeSocial_TagRedeSocialCampeonato
+    foreign key (id_tag_rede_social)
+    references tbl_tag_rede_social(id),
+    
+    unique index(id),
+    primary key(id)
 );
 
 create table tbl_campeonatos_organizadores(
@@ -491,15 +539,20 @@ insert into tbl_tag_rede_social (tag, id_rede_social)
 select * from tbl_tag_rede_social;
 
 ### TESTE INSERT NA TABELA DE ORGANIZADOR
-insert into tbl_organizador (nome_organizacao, foto_organizacao, biografia, id_perfil, id_tag_rede_social)
+insert into tbl_organizador (nome_organizacao, foto_organizacao, biografia, id_perfil)
 	values(
 			"Gustavo", 
 			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoPadraoPerfilUsuario.png?alt=media&token=df04182f-35f3-4901-8b3a-c0d1501e2f58", 
 			"Biografia padrao",  
-			1,  
-			2);
+			1);
             
 select * from tbl_organizador;
+
+### TESTE INSERT NA TABELA DE TAG DA REDE SOCIAL ORGANIZADOR
+insert into tbl_tag_rede_social_organizador (id_organizador, id_tag_rede_social)
+	values("1", "2");
+    
+select * from tbl_tag_rede_social_organizador;
 
 ### TESTE INSERT NA TABELA DE JOGO
 insert into tbl_jogo (nome_jogo, foto_jogo)
@@ -514,17 +567,22 @@ insert into tbl_jogo (nome_jogo, foto_jogo)
 select * from tbl_jogo;
 
 ### TESTE INSERT NA TABELA DE TIME
-insert into tbl_time (nome_time, foto_time, foto_capa, biografia, id_jogo, id_organizador, id_tag_rede_social)
+insert into tbl_time (nome_time, foto_time, foto_capa, biografia, id_jogo, id_organizador)
 	values(
 			"Time padrão", 
 			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoPadraoPerfilUsuario.png?alt=media&token=df04182f-35f3-4901-8b3a-c0d1501e2f58", 
 			"https://firebasestorage.googleapis.com/v0/b/proliseum.appspot.com/o/fotosPadraonizadas%2FfotoCapaPadrao.png?alt=media&token=93f1229b-e007-45c1-bb7a-363ce09b9027",  
 			"Biografia padrão",  
 		    1,  
-			1,  
-			2);
+			1);
 	
 select * from tbl_time;
+
+### TESTE INSERT NA TABELA DE TAG DA REDE SOCIAL TIME
+insert into tbl_tag_rede_social_time (id_time, id_tag_rede_social)
+	values("1", "2");
+    
+select * from tbl_tag_rede_social_time;
 
 ### TESTE INSERT NA TABELA DE FUNÇÃO JOGO
 insert into tbl_funcao_jogo (foto_funcao, id_jogo)
@@ -583,15 +641,20 @@ insert into tbl_dados_jogador (id_funcao_jogo, id_rank_jogo)
 select * from tbl_dados_jogador;
 
 ### TESTE INSERT NA TABELA DE JOGADOR
-insert into tbl_jogador (nickname, biografia, id_perfil, id_tag_rede_social, id_dados_jogador)
+insert into tbl_jogador (nickname, biografia, id_perfil, id_dados_jogador)
 	values(
 			"EduardoGamer", 
-			"Biografia padrao", 
-			2,  
-			2,
+			"Biografia padrao",
+            2,
 			1);
 		
 select * from tbl_jogador;
+
+### TESTE INSERT NA TABELA DE TAG DA REDE SOCIAL JOGADOR
+insert into tbl_tag_rede_social_jogador (id_jogador, id_tag_rede_social)
+	values("1", "2");
+    
+select * from tbl_tag_rede_social_jogador;
 
 ### TESTE DE INSERT DA TABELA INTERMEDIARIA ENTRE JOGADOR E TIME
 insert into tbl_jogador_time(id_jogador, id_time)
@@ -634,8 +697,10 @@ INNER JOIN tbl_perfil
 		ON tbl_organizador.id = tbl_perfil.id
 INNER JOIN tbl_genero
 		ON tbl_perfil.id = tbl_genero.id
+INNER JOIN tbl_tag_rede_social_organizador
+        ON tbl_organizador.id = tbl_tag_rede_social_organizador.id
 INNER JOIN tbl_tag_rede_social
-        ON tbl_organizador.id = tbl_tag_rede_social.id
+		ON tbl_tag_rede_social_organizador.id = tbl_tag_rede_social.id
 INNER JOIN tbl_rede_social
 		ON tbl_tag_rede_social.id = tbl_rede_social.id;
         
@@ -661,7 +726,10 @@ LEFT JOIN tbl_perfil
     ON tbl_jogador.id = tbl_perfil.id
 LEFT JOIN tbl_genero
     ON tbl_perfil.id = tbl_genero.id
+LEFT JOIN tbl_tag_rede_social_jogador
+    ON tbl_jogador.id = tbl_tag_rede_social_jogador.id
 LEFT JOIN tbl_tag_rede_social
-    ON tbl_jogador.id = tbl_tag_rede_social.id
+	ON tbl_tag_rede_social_jogador.id = tbl_tag_rede_social.id
 LEFT JOIN tbl_rede_social
     ON tbl_tag_rede_social.id = tbl_rede_social.id;
+    
