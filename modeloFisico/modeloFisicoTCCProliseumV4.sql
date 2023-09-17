@@ -637,4 +637,31 @@ INNER JOIN tbl_genero
 INNER JOIN tbl_tag_rede_social
         ON tbl_organizador.id = tbl_tag_rede_social.id
 INNER JOIN tbl_rede_social
-		ON tbl_tag_rede_social.id = tbl_rede_social.id
+		ON tbl_tag_rede_social.id = tbl_rede_social.id;
+        
+### INNER JOIN TABELA JOGADOR
+
+SELECT tbl_jogador.id,
+    tbl_jogador.nickname,
+    tbl_jogador.biografia,
+    tbl_perfil.nome_usuario,
+    tbl_perfil.nome_completo,
+    tbl_perfil.email,
+    tbl_perfil.senha,
+    tbl_perfil.data_nascimento,
+    tbl_perfil.foto_perfil,
+    tbl_perfil.foto_capa,
+    tbl_genero.nome_genero,
+    tbl_genero.icone_genero,
+    tbl_tag_rede_social.tag,
+    tbl_rede_social.nome_rede_social,
+    tbl_rede_social.icone_rede_social
+FROM tbl_jogador
+LEFT JOIN tbl_perfil
+    ON tbl_jogador.id = tbl_perfil.id
+LEFT JOIN tbl_genero
+    ON tbl_perfil.id = tbl_genero.id
+LEFT JOIN tbl_tag_rede_social
+    ON tbl_jogador.id = tbl_tag_rede_social.id
+LEFT JOIN tbl_rede_social
+    ON tbl_tag_rede_social.id = tbl_rede_social.id;
