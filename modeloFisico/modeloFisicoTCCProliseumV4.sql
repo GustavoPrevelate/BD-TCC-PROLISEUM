@@ -136,7 +136,7 @@ create table tbl_tag_rede_social_time(
 create table tbl_peneira_time(
 	id int not null auto_increment,
     nome_publicacao varchar(100) not null,
-    inicio_horario_publicacao datetime not null,
+    inicio_horario_publicacao datetime,
     inicio_horario_disponivel datetime not null,
     fim_horario_disponivel datetime not null,
     descricao text(5000) not null,
@@ -284,7 +284,7 @@ create table tbl_jogador_time(
 create table tbl_publicacao_jogador(
 	id int not null auto_increment,
     nome_publicacao varchar(100) not null,
-    inicio_horario_publicacao datetime not null,
+    inicio_horario_publicacao datetime,
     inicio_horario_disponivel datetime not null,
     fim_horario_disponivel datetime not null,
     descricao text(5000) not null,
@@ -376,10 +376,10 @@ create table tbl_campeonato(
     nome_campeonato varchar(100) not null,
     formato text(2000) not null,
     foto_capa_campeonato text not null,
-    data_hora datetime not null,
+    data_hora datetime,
     inicio datetime not null,
     fim datetime not null,
-    andamento tinyint not null,
+    andamento tinyint,
     descricao text(5000) not null,
     regras text(5000) not null,
     avaliacao double,
@@ -697,7 +697,7 @@ INNER JOIN tbl_perfil
 		ON tbl_organizador.id = tbl_perfil.id
 INNER JOIN tbl_genero
 		ON tbl_perfil.id = tbl_genero.id
-INNER JOIN tbl_tag_rede_social_organizador
+INNER JOIN tbl_tag_rede_social_organizadorss
         ON tbl_organizador.id = tbl_tag_rede_social_organizador.id
 INNER JOIN tbl_tag_rede_social
 		ON tbl_tag_rede_social_organizador.id = tbl_tag_rede_social.id
